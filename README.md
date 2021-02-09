@@ -16,5 +16,5 @@ Las herramientas utilizadas para el desarollo de esta aplicación son las siguei
 
 ## Link de video explicativo en TouTube
 
-https://youtu.be/dF3Ty5xjgQ0
+https://youtu.be/tOp1A5V4KRw
 
