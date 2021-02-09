@@ -41,7 +41,7 @@ public class LogActivity extends AppCompatActivity {
     }
 
     private void setup() {
-        setTitle("Autenticación");
+        setTitle("Inicio");
 
         btn_signUp.setOnClickListener(new View.OnClickListener() {
 
@@ -60,12 +60,11 @@ public class LogActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String uid = task.getResult().getUser().getUid();
                                 String email = task.getResult().getUser().getEmail();
+                                showAgenda(email);
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("uid", uid);
                                 user.put("email", email);
                                 db.collection("users").add(user);
-                                showAlertUsuarioC();
-                                showAgenda(email);
                             }
                             else {
                                 showAlertRegistrado();
@@ -75,6 +74,7 @@ public class LogActivity extends AppCompatActivity {
                 }
             }
         });
+
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,20 +126,11 @@ public class LogActivity extends AppCompatActivity {
         android.app.AlertDialog dialog = ((AlertDialog.Builder) AlertDialog).create();
         dialog.show();
     }
-    private void showAlertUsuarioC() {
-        AlertDialog = new AlertDialog.Builder(this);
-        ((AlertDialog.Builder) AlertDialog).setTitle("Correcto");
-        ((AlertDialog.Builder) AlertDialog).setMessage("El Usuario a sido registrado con exito");
-        ((AlertDialog.Builder) AlertDialog).setPositiveButton("Aceptar", null);
-        android.app.AlertDialog dialog = ((AlertDialog.Builder) AlertDialog).create();
-        dialog.show();
-    }
 
     private void showAgenda(String email) {
         Intent homeIntent = new Intent(this, AgendaActivity.class).putExtra("email", email);
         startActivity(homeIntent);
 
     }
-
 
 }
